@@ -1,8 +1,8 @@
 ---
-title: "Moral Questions, Pilot 1A"
+title: "Moral Questions, Pilot 1B Item by Item"
 author: "morgan moyer"
 date: "`r Sys.Date()`"
-output: html_document
+output: pdf_document
 ---
 
 
@@ -32,17 +32,17 @@ names(d)
 # Define the correct order of your responses
 # Convert responses to ordered factors
 
-d$R1A <- factor(
-  d$R1A,
-  levels = c("Very wrong",
-             "Wrong",
-             "Somewhat wrong",
-             "Somewhat right",
-             "Right",
-             "Very right"),
+d$R1B <- factor(
+  d$R1B,
+  levels = c("Very bad",
+             "Bad",
+             "Somewhat bad",
+             "Somewhat good",
+             "Good",
+             "Very good"),
   ordered = TRUE
 )
-# d$R1A <- str_wrap(d$R1A, width = 10)  # wrap every ~12 chars
+# d$R1B <- str_wrap(d$R1B, width = 10)  # wrap every ~12 chars
 
 d$R2 <- factor(
   d$R2,
@@ -113,13 +113,14 @@ d.t1 <- d %>%
 ```
 
 # Response 1A
-```{r}
+```{r fig.height=10, fig.width=10}
 
-ggplot(d.t1, aes(x = R1A, fill = Valence)) +
+ggplot(d.t1, aes(x = R1B, fill = Valence)) +
     geom_bar(color = "black", position = "dodge") +  # dodge puts bars side by side
+    facet_wrap(~Number,ncol=2) +
     labs(
-      title = "Distribution of R1A responses by Valence",
-      x = "R1A Response",
+      title = "Distribution of R1B responses by Valence",
+      x = "R1B Response",
       y = "Count",
       fill = "Valence"
     ) +
@@ -132,10 +133,11 @@ ggplot(d.t1, aes(x = R1A, fill = Valence)) +
 ```
 
 # Response 2
-```{r}
+```{r fig.height=10, fig.width=10}
 
 ggplot(d.t1, aes(x = R2, fill = Valence)) +
     geom_bar(color = "black", position = "dodge") +  # dodge puts bars side by side
+    facet_wrap(~Number,ncol=2) +
     labs(
       title = "Distribution of R2 responses by Valence",
       x = "R2 Response",
@@ -144,14 +146,14 @@ ggplot(d.t1, aes(x = R2, fill = Valence)) +
     ) +
     scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 10)) +
     theme_minimal()
-
 ```
 
 # Response 3
-```{r}
+```{r fig.height=10, fig.width=10}
 
 ggplot(d.t1, aes(x = R3, fill = Valence)) +
     geom_bar(color = "black", position = "dodge") +  # dodge puts bars side by side
+    facet_wrap(~Number,ncol=2) +
     labs(
       title = "Distribution of R3 responses by Valence",
       x = "R3 Response",
@@ -164,10 +166,11 @@ ggplot(d.t1, aes(x = R3, fill = Valence)) +
 ```
 
 # Response 4
-```{r}
+```{r fig.height=10, fig.width=10}
 
 ggplot(d.t1, aes(x = R4, fill = Valence)) +
     geom_bar(color = "black", position = "dodge") +  # dodge puts bars side by side
+    facet_wrap(~Number,ncol=2) +
     labs(
       title = "Distribution of R4 responses by Valence",
       x = "R4 Response",
@@ -186,10 +189,11 @@ d.t2 <- d %>%
 ```
 
 # Response 5
-```{r}
+```{r fig.height=10, fig.width=10}
 
 ggplot(d.t2, aes(x = R5, fill = Valence)) +
     geom_bar(color = "black", position = "dodge") +  # dodge puts bars side by side
+    facet_wrap(~Number,ncol=2) +
     labs(
       title = "Distribution of R5 responses by Valence",
       x = "R5 Response",
@@ -202,10 +206,11 @@ ggplot(d.t2, aes(x = R5, fill = Valence)) +
 ```
 
 # Response 6
-```{r}
+```{r fig.height=10, fig.width=10}
 
 ggplot(d.t2, aes(x = R6, fill = Valence)) +
     geom_bar(color = "black", position = "dodge") +  # dodge puts bars side by side
+    facet_wrap(~Number,ncol=2) +
     labs(
       title = "Distribution of R6 responses by Valence",
       x = "R6 Response",

@@ -55,12 +55,12 @@ read.pcibex <- function(filepath, auto.colnames=TRUE, fun.col=function(col,cols)
 }
 
 # Read in the results
-d <- read.pcibex("../data/results_prod.csv")
+d1 <- read.pcibex("../data/results_1BB.csv")
+nrow(d1)
+d2 <- read.pcibex("../data/results_1BA.csv")
+nrow(d2)
 
-
-names(d)
-nrow(d)
-length(unique(d$MD5.hash.of.participant.s.IP.address))
+d <- rbind(d1,d2)
 ```
 
 
@@ -97,81 +97,6 @@ df_combined <- full_join(demo, d.sub, by = "Participant")
 df_combined <- df_combined |>
   dplyr::mutate(across(where(is.list),
                        ~ sapply(., paste, collapse = ";")))
-
-
-table(df_combined$R1A)
-```
-
-# Convert each scale into an ordered factor
-```{r}
-# Define the correct order of your responses
-# Convert responses to ordered factors
-
-df_combined$R1A <- factor(
-  df_combined$R1A,
-  levels = c("Very wrong",
-             "Wrong",
-             "Somewhat wrong",
-             "Somewhat right",
-             "Right",
-             "Very right"),
-  ordered = TRUE
-)
-
-df_combined$R2 <- factor(
-  df_combined$R2,
-  levels = c("Definitely no correct answer",
-             "Probably no correct answer",
-             "Maybe no correct answer",
-             "Maybe there is a correct answer",
-             "Probably there is a correct answer",
-             "Definitely there is a correct answer"),
-  ordered = TRUE
-)
-
-df_combined$R3 <- factor(
-  df_combined$R3,
-  levels = c("Almost everyone would agree with me",
-             "Most of them would agree with me",
-             "Some of them would agree with me",
-             "Some of them would disagree with me",
-             "Most of them would disagree with me",
-             "Almost everyone would disagree with me"),
-  ordered = TRUE
-)
-
-df_combined$R4 <- factor(
-  df_combined$R4,
-  levels = c("Very easy",
-             "Somewhat easy",
-             "A little easy",
-             "A little difficult",
-             "Somewhat difficult",
-             "Very difficult"),
-  ordered = TRUE
-)
-
-df_combined$R5 <- factor(
-  df_combined$R5,
-  levels = c("Neither of us needs to be mistaken",
-             "Probably neither of us needs to be mistaken",
-             "Maybe neither of us needs to be mistaken",
-             "The other person is maybe mistaken",
-             "The other person is likely mistaken",
-             "The other person is clearly mistaken"),
-  ordered = TRUE
-)
-
-df_combined$R6 <- factor(
-  df_combined$R6,
-  levels = c("Extremely uncomfortable",
-             "Very uncomfortable",
-             "Mildly uncomfortable",
-             "Mildly comfortable",
-             "Very comfortable",
-             "Extremely comfortable"),
-  ordered = TRUE
-)
 
 ```
 
