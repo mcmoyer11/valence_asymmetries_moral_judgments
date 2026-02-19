@@ -1,0 +1,218 @@
+---
+title: "Moral Questions, Pilot 1A"
+author: "morgan moyer"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+
+```{r setup, include=FALSE, warning=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(lme4)
+library(lmerTest)
+library(multcomp) # not available for this version of R
+library(stringr)
+library(textstem)
+library(sciplot)
+library(tidyverse)
+theme_set(theme_bw())
+cbPalette <- c("#56B4E9", "#D55E00", "#009E73","#999999", "#E69F00")
+this.dir <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(this.dir)
+source("../../helpers.R")
+
+d <- read.csv("../data/processed.csv")
+
+names(d)
+```
+
+# Convert each scale into an ordered factor
+```{r}
+# Define the correct order of your responses
+# Convert responses to ordered factors
+
+d$R1A <- factor(
+  d$R1A,
+  levels = c("Very wrong",
+             "Wrong",
+             "Somewhat wrong",
+             "Somewhat right",
+             "Right",
+             "Very right"),
+  ordered = TRUE
+)
+# d$R1A <- str_wrap(d$R1A, width = 10)  # wrap every ~12 chars
+
+d$R2 <- factor(
+  d$R2,
+  levels = c("Definitely no correct answer",
+             "Probably no correct answer",
+             "Maybe no correct answer",
+             "Maybe there is a correct answer",
+             "Probably there is a correct answer",
+             "Definitely there is a correct answer"),
+  ordered = TRUE
+)
+# d$R2 <- str_wrap(d$R2, width = 10)  # wrap every ~12 chars
+
+
+d$R3 <- factor(
+  d$R3,
+  levels = c("Almost everyone would agree with me",
+             "Most of them would agree with me",
+             "Some of them would agree with me",
+             "Some of them would disagree with me",
+             "Most of them would disagree with me",
+             "Almost everyone would disagree with me"),
+  ordered = TRUE
+)
+# d$R3 <- str_wrap(d$R3, width = 10)  # wrap every ~12 chars
+
+d$R4 <- factor(
+  d$R4,
+  levels = c("Very easy",
+             "Somewhat easy",
+             "A little easy",
+             "A little difficult",
+             "Somewhat difficult",
+             "Very difficult"),
+  ordered = TRUE
+)
+# d$R4 <- str_wrap(d$R4, width = 10)  # wrap every ~12 chars
+
+d$R5 <- factor(
+  d$R5,
+  levels = c("Neither of us needs to be mistaken",
+             "Probably neither of us needs to be mistaken",
+             "Maybe neither of us needs to be mistaken",
+             "The other person is maybe mistaken",
+             "The other person is likely mistaken",
+             "The other person is clearly mistaken"),
+  ordered = TRUE
+)
+# d$R5 <- str_wrap(d$R5, width = 10)  # wrap every ~12 chars
+
+d$R6 <- factor(
+  d$R6,
+  levels = c("Extremely uncomfortable",
+             "Very uncomfortable",
+             "Mildly uncomfortable",
+             "Mildly comfortable",
+             "Very comfortable",
+             "Extremely comfortable"),
+  ordered = TRUE
+)
+d$R6 <- str_wrap(d$R6, width = 10)  # wrap every ~12 chars
+
+```
+
+```{r}
+d.t1 <- d %>% 
+  filter(Label == "test_phase1")
+```
+
+# Response 1A
+```{r}
+
+ggplot(d.t1, aes(x = R1A, fill = Valence)) +
+    geom_bar(color = "black", position = "dodge") +  # dodge puts bars side by side
+    labs(
+      title = "Distribution of R1A responses by Valence",
+      x = "R1A Response",
+      y = "Count",
+      fill = "Valence"
+    ) +
+    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 10)) +
+    theme_minimal()
+  # theme(
+  #   axis.text.x = element_text(angle = 90, hjust = 1) 
+  # )
+
+```
+
+# Response 2
+```{r}
+
+ggplot(d.t1, aes(x = R2, fill = Valence)) +
+    geom_bar(color = "black", position = "dodge") +  # dodge puts bars side by side
+    labs(
+      title = "Distribution of R2 responses by Valence",
+      x = "R2 Response",
+      y = "Count",
+      fill = "Valence"
+    ) +
+    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 10)) +
+    theme_minimal()
+
+```
+
+# Response 3
+```{r}
+
+ggplot(d.t1, aes(x = R3, fill = Valence)) +
+    geom_bar(color = "black", position = "dodge") +  # dodge puts bars side by side
+    labs(
+      title = "Distribution of R3 responses by Valence",
+      x = "R3 Response",
+      y = "Count",
+      fill = "Valence"
+    ) +
+    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 10)) +
+    theme_minimal()
+
+```
+
+# Response 4
+```{r}
+
+ggplot(d.t1, aes(x = R4, fill = Valence)) +
+    geom_bar(color = "black", position = "dodge") +  # dodge puts bars side by side
+    labs(
+      title = "Distribution of R4 responses by Valence",
+      x = "R4 Response",
+      y = "Count",
+      fill = "Valence"
+    ) +
+    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 10)) +
+    theme_minimal()
+
+```
+
+
+```{r}
+d.t2 <- d %>% 
+  filter(Label == "test_phase2")
+```
+
+# Response 5
+```{r}
+
+ggplot(d.t2, aes(x = R5, fill = Valence)) +
+    geom_bar(color = "black", position = "dodge") +  # dodge puts bars side by side
+    labs(
+      title = "Distribution of R5 responses by Valence",
+      x = "R5 Response",
+      y = "Count",
+      fill = "Valence"
+    ) +
+    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 10)) +
+    theme_minimal()
+
+```
+
+# Response 6
+```{r}
+
+ggplot(d.t2, aes(x = R6, fill = Valence)) +
+    geom_bar(color = "black", position = "dodge") +  # dodge puts bars side by side
+    labs(
+      title = "Distribution of R6 responses by Valence",
+      x = "R6 Response",
+      y = "Count",
+      fill = "Valence"
+    ) +
+    scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 10)) +
+    theme_minimal()
+
+```

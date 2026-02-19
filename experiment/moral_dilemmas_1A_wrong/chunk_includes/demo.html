@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Background Questions</title>
+    <style>
+        body {
+            font-size: 16pt;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .obligatory-warning {
+            color: red;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .question-block {
+            margin-bottom: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Please answer some questions about your background and the languages you speak.</h1>
+
+<div class="question-block">
+    <p><strong>Provide the reasons that you hold the particular set of moral beliefs that you do.</strong> Check as many of the following statements that you consider support for your moral beliefs:</p>
+    <label><input type="checkbox" name="moral_reason" value="1"> They are ordained by a supreme being.</label><br>
+    <label><input type="checkbox" name="moral_reason" value="2"> Every good person on earth, regardless of culture, holds these beliefs.</label><br>
+    <label><input type="checkbox" name="moral_reason" value="3"> A society could not survive without its citizens holding these beliefs.</label><br>
+    <label><input type="checkbox" name="moral_reason" value="4"> Their truth is self-evident.</label><br>
+</div>
+
+<div class="question-block">
+    <p><strong>According to you, is it possible for there to be right and wrong acts, without the existence of God?</strong></p>
+    <label><input type="radio" name="rightwrong" value="yes" class="obligatory"> Yes</label><br>
+    <label><input type="radio" name="rightwrong" value="no" class="obligatory"> No</label><br>
+    <label><input type="radio" name="rightwrong" value="notsure" class="obligatory"> Not sure</label><br>
+</div>
+
+<div class="question-block">
+    <p><strong>What is your age?</strong></p>
+    <input type="number" name="age" min="18" max="120" class="obligatory">
+</div>
+
+<div class="question-block">
+    <p><strong>What is your level of education?</strong></p>
+    <select name="education" class="obligatory">
+        <option value="" selected disabled>-- Please select --</option>
+        <option value="less_than_hs">Less than high school</option>
+        <option value="hs">High school</option>
+        <option value="prof_training">Professional Training</option>
+        <option value="some_college">Some College/University</option>
+        <option value="college">College/University</option>
+        <option value="masters">Master’s</option>
+        <option value="phd_md_jd">Ph.D./M.D./J.D.</option>
+    </select>
+</div>
+
+<div class="question-block">
+    <p><strong>What is your gender?</strong></p>
+    <label><input type="radio" name="gender" value="man" class="obligatory"> Man</label><br>
+    <label><input type="radio" name="gender" value="woman" class="obligatory"> Woman</label><br>
+    <label><input type="radio" name="gender" value="nonbinary" class="obligatory"> Non-binary</label><br>
+    <label><input type="radio" name="gender" value="other" class="obligatory"> Other</label><br>
+    <label><input type="radio" name="gender" value="prefer_not_say" class="obligatory"> Prefer not to say</label><br>
+</div>
+
+<div class="question-block">
+    <p><strong>What is your country of residence?</strong></p>
+    <input type="text" name="country" class="obligatory">
+</div>
+
+<div class="question-block">
+    <p><strong>Which religions do you identify with? (Check all that apply)</strong></p>
+    <label><input type="checkbox" name="religion" value="islam"> Islam</label><br>
+    <label><input type="checkbox" name="religion" value="christianity"> Christianity</label><br>
+    <label><input type="checkbox" name="religion" value="hindu"> Hindu</label><br>
+    <label><input type="checkbox" name="religion" value="buddhism"> Buddhism</label><br>
+    <label><input type="checkbox" name="religion" value="judaism"> Judaism</label><br>
+    <label><input type="checkbox" name="religion" value="sikhism"> Sikhism</label><br>
+    <label><input type="checkbox" name="religion" value="indigenous"> Indigenous/traditional religion(s)</label><br>
+    <label><input type="checkbox" name="religion" value="spiritual_not_religious"> Spiritual but not religious</label><br>
+    <label><input type="checkbox" name="religion" value="none"> No religion</label><br>
+    <label><input type="checkbox" name="religion" value="prefer_not_say"> Prefer not to say</label><br>
+</div>
+
+<div class="question-block">
+    <p><strong>Which languages do you speak (in order of when you learned them, starting from your native language)?</strong></p>
+    <input type="text" name="lang1" placeholder="First language" class="obligatory"><br>
+    <input type="text" name="lang2" placeholder="Second language"><br>
+    <input type="text" name="lang3" placeholder="Third language"><br>
+    <label><input type="checkbox" name="lang4" value="more_than_three"> I speak more than three languages.</label><br>
+
+</div>
+
+<p id="warning" class="obligatory-warning" style="display:none;">
+    Please answer all required questions to proceed.
+</p>
+
+</body>
+</html>
